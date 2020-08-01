@@ -85,7 +85,7 @@
 			});
 
 			$('#apply').on('click', function() {
-				window.location.href = "<?php echo base_url('log/'); ?>" + $('#log_date').val();
+				window.location.href = "<?php echo $this->config->base_url('log/'); ?>" + $('#log_date').val();
 			});
 		});
 		</script>
