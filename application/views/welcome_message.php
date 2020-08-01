@@ -1,88 +1,136 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+?>
+<!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
-
-	<style type="text/css">
-
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
-
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
-
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
-
-	#body {
-		margin: 0 15px 0 15px;
-	}
-
-	p.footer {
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-
-	#container {
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <title>CI Logviewer</title>
+  <style type="text/css">
+    body {
+      padding-top: 70px;
+    }
+    .panel {
+      border: 0px;
+      box-shadow: none;
+    }
+    .panel-body {
+      padding: 0px;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding-top: 140px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
+<!-- Navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="<?=$url;?>">CI Logviewer</a>
+    </div>
 
-	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
+    <div class="navbar-form navbar-right">
 
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
+        <?php
+          if ( !empty($logs) ) {
 
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
+            echo '<div class="form-group">';
+            echo '<select class="form-control" onchange="window.location = \''.$url.'?log_date=\' + this.options[this.selectedIndex].value">';
 
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
-	</div>
+            foreach ($logs as $key => $value) {
 
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+              // check if the selected date
+              $selected_option = ($key == $selected) ? 'selected="selected"' : null;
+
+              // set the option
+              echo '<option value="'.$key.'" '.$selected_option.'>'.$value.'</option>';
+
+            }
+
+            echo '</select>';
+            echo '</div>';
+
+          }
+          ?>
+
+        </div>
+      </div>
+
+  </div>
+</nav>
+<!-- // Navbar -->
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+      <?php
+
+      if ( !empty($log) ) {
+
+        echo '<table class="table table-responsive table-striped">
+           <thead>
+             <tr>
+               <th class="text-center">Time</th>
+               <th class="text-center">Type</th>
+               <th>Details</th>
+             </tr>
+           </thead>';
+
+        echo '<tbody>';
+
+        foreach ($log as $value) {
+
+          echo '<tr>';
+          echo '<td>'.$value['time'].'</td>';
+
+          switch($value['severity']) {
+            case 'Error':
+              $button_type = 'btn-danger';
+              break;
+            case 'Warning':
+              $button_type = 'btn-warning';
+              break;
+            case 'Notice':
+              $button_type = 'btn-default';
+              break;
+          }
+
+          echo '<td><button class="btn btn-xs '.$button_type.' btn-block" disabled>'.$value['severity'].'</button></td>';
+          echo '<td>'.$value['error'].'</td>';
+          echo '</tr>';
+
+        }
+
+        echo '</tbody>';
+        echo '</table>';
+
+      } elseif ( $log_threshold < 1 && empty($logs) ) {
+
+        // the setting in config are not correct
+        echo 'Please change the setting $config["log_threshold"] = 1 in config/config.php';
+
+      } elseif ( $log_threshold >= 1 && empty($logs) ) {
+
+        // there are no logs
+        echo 'No log files found';
+
+      } else {
+
+        // there are some notice in the log file
+        echo 'No errors or warnings, please set hide_notices to false if you want to view notices';
+
+      }
+      ?>
+
+   </div>
+  </div>
+
 </div>
 
 </body>
