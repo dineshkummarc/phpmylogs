@@ -20,6 +20,13 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		// load the library
+		$this->load->library('Logviewer');
+
+		// get logs data
+		$data = $this->logviewer->get_logs();
+
+		// load the view
+		$this->load->view('welcome_message', $data);
 	}
 }
