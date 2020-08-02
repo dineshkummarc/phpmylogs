@@ -4,13 +4,14 @@
  * Date: 09-Jan-18
  * Time: 4:30 AM
  */
-namespace CILogViewer;
+
+//namespace CILogViewer;
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 defined('APPPATH') OR exit('Not a Code Igniter Environment');
 
 
-class CILogViewer {
+class CILogViewer{
 
     private $CI;
 
@@ -53,11 +54,11 @@ class CILogViewer {
      * that's used by the library to present logs on the UI
      */
     private $LOG_VIEW_FILE_FOLDER = "";
-    private $LOG_VIEW_FILE_NAME = "logs.php";
+    private $LOG_VIEW_FILE_NAME = "log.php";
     private $LOG_VIEW_FILE_PATH = "";
 
     //this is the name of the view file passed to CI load->view()
-    const CI_LOG_VIEW_FILE_PATH = "cilogviewer/logs";
+    const CI_LOG_VIEW_FILE_PATH = "/logs";
 
     const MAX_LOG_SIZE = 52428800; //50MB
     const MAX_STRING_LENGTH = 300; //300 chars
