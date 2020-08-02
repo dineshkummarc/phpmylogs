@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['log/(\d{4})-(\d{2})-(\d{2})'] = 'log/$1-$2-$3';
 $route['log'] = 'log';
+$route['mylogs'] = "logViewerController/index";
 
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
