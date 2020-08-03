@@ -50,9 +50,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['log/(\d{4})-(\d{2})-(\d{2})'] = 'log/$1-$2-$3';
-$route['log'] = 'log';
+$route['log'] = 'log/index';
+$route['logs'] = 'logs/index';
+$route['test'] = 'test/index';
 $route['mylogs'] = "logViewerController/index";
-
-$route['default_controller'] = 'welcome';
+$route['logmine'] = "Logmine/index";
+$route['default_controller'] = 'welcome/index';
+// $route['bslogs'] = "logViewerControllers/index";
+// $route['hotlogs'] = "Hotlogs/index";
+// $route['logme'] = "Logviewer9/index";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
