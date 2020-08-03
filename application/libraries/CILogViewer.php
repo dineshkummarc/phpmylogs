@@ -103,7 +103,7 @@ class CILogViewer{
 
         //create the view file so that CI can find it
         //use VIEWPATH constant so the CI can find views location and this constant will be defined in index.php file.
-        $this->LOG_VIEW_FILE_FOLDER = VIEWPATH . "cilogviewer";
+        $this->LOG_VIEW_FILE_FOLDER = VIEWPATH . "mylogfile";
         $this->LOG_VIEW_FILE_PATH = rtrim($this->LOG_VIEW_FILE_FOLDER) . "/" . $this->LOG_VIEW_FILE_NAME;
         if(!file_exists($this->LOG_VIEW_FILE_PATH)) {
 
@@ -534,10 +534,4 @@ class CILogViewer{
 
         return $currentFile;
     }
-
-
-
 }
-
-
-
