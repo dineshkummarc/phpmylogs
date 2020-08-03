@@ -54,6 +54,7 @@ $route['log'] = 'log/index';
 $route['logs'] = 'logs/index';
 $route['test'] = 'test/index';
 $route['mylogs'] = "logViewerController/index";
+$route['melogs'] = "logViewerControllers/index";
 $route['logmine'] = "Logmine/index";
 $route['default_controller'] = 'welcome/index';
 // $route['bslogs'] = "logViewerControllers/index";
