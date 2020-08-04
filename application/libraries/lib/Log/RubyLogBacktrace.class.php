@@ -23,7 +23,8 @@
  * THE SOFTWARE.
  **/
 
-include_once(dirname(__FILE__) . '/RubyLog.class.php');
+// include_once(dirname(__FILE__) . '/RubyLog.class.php');
+require_once(APPPATH.'libraries/lib/Log/RubyLog.class.php');
 
 class RubyLogBacktrace extends RubyLog
 {

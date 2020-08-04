@@ -23,7 +23,8 @@
  * THE SOFTWARE.
  **/
 
-include_once(dirname(__FILE__) . '/PHPLog.class.php');
+// include_once(dirname(__FILE__) . '/PHPLog.class.php');
+require_once(APPPATH.'libraries/lib/Log/PHPLog.class.php');
 
 class PHPLogBacktrace extends PHPLog
 {
