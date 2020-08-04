@@ -1,4 +1,4 @@
-# CodeIgniter-LogViewer9
+# CodeIgniter-LogViewer10
 
 This repository is a codeignitor port of the Laravel library located at https://github.com/ARCANEDEV/LogViewer. Mainly dedicated for CodeIgniter based LogViewer for PHP 7.1.x
 
