@@ -20,6 +20,6 @@ class Logviewer10 extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('logviewer10');
+		$this->load->view('dashboard.blade');
 	}
 }
