@@ -372,9 +372,13 @@ function slash_machine(&$data)
 /******************************************************************************
  * Classes
  ******************************************************************************/
-include_once(dirname(__FILE__) . '/lib/LineOutput.class.php');
-include_once(dirname(__FILE__) . '/lib/LogSet.class.php');
-include_once(dirname(__FILE__) . '/lib/SkipWarning.class.php');
+// include_once(dirname(__FILE__) . '/lib/LineOutput.class.php');
+// include_once(dirname(__FILE__) . '/lib/LogSet.class.php');
+// include_once(dirname(__FILE__) . '/lib/SkipWarning.class.php');
+
+require_once(APPPATH.'libraries/lib/LineOutput.class.php');
+require_once(APPPATH.'libraries/lib/LogSet.class.php');
+require_once(APPPATH.'libraries/lib/SkipWarning.class.php');
 
 
 /******************************************************************************
