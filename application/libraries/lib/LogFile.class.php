@@ -23,7 +23,8 @@
  * THE SOFTWARE.
  **/
 
-include_once(dirname(__FILE__) . '/Log.class.php');
+// include_once(dirname(__FILE__) . '/Log.class.php');
+require_once(APPPATH.'libraries/lib/Log.class.php');
 
 class LogFile
 {
